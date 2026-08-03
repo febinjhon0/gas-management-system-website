@@ -1,0 +1,462 @@
+<!-- 
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container mt-3">
+    <div class="card shadow p-4">
+  <h2 class="text-center fw-bold">User Registration</h2>
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+     <div class="mb-3 mt-3">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required pattern="[a-z A-Z]{3,30}">
+    </div>
+
+<div class="mb-3 mt-3">
+      <label for="dob">DOB:</label>
+      <input type="date" class="form-control" id="dob" placeholder="Enter Name" name="dob" required>
+    </div>
+
+<div class="mb-3 mt-3">
+      <label for="dob">Gender</label>
+     
+      <select class="form-control" id="genmale" name="gen"> 
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+
+
+    <div class="mb-3 mt-3">
+      <label for="pic"> Image:</label>
+      <input type="file" class="form-control" id="pic" name="image" required accept="image/*">
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  minlength="8"
+           pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+           title="Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.">
+    </div>
+    <div class="mb-3">
+      <label for="pwd">Confirm Password:</label>
+      <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name="pswd2" required>
+    </div>
+    <div class="form-check mb-3">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="remember"> Remember me
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {%if messages %}
+    {{message}}
+    {% endif %}
+  </form>
+</div>
+</div>
+<script>
+// Form Validation
+function validateForm() {
+
+    let name = document.getElementById("name").value.trim();
+    let dob = document.getElementById("dob").value;
+    let image = document.getElementById("pic").value;
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("pwd").value;
+    let confirmPassword = document.getElementById("pwd2").value;
+
+    // Name Validation
+    if (!/^[A-Za-z ]{3,30}$/.test(name)) {
+        alert("Name should contain only letters and spaces (3-30 characters).");
+        return false;
+    }
+
+    // DOB Validation
+    if (dob === "") {
+        alert("Please select your Date of Birth.");
+        return false;
+    }
+
+    let birthDate = new Date(dob);
+    let today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    let month = today.getMonth() - birthDate.getMonth();
+
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    if (age < 18) {
+        alert("You must be at least 18 years old to register.");
+        return false;
+    }
+
+    // Image Validation
+    if (image === "") {
+        alert("Please select an image.");
+        return false;
+    }
+
+    let ext = image.split('.').pop().toLowerCase();
+
+    if (!["jpg", "jpeg", "png", "gif"].includes(ext)) {
+        alert("Only JPG, JPEG, PNG and GIF images are allowed.");
+        return false;
+    }
+
+    // Email Validation
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid email address.");
+        return false;
+    }
+
+    // Password Validation
+    let passPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (!passPattern.test(password)) {
+        alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.");
+        return false;
+    }
+
+    // Confirm Password
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+    }
+
+    return true;
+}
+
+// Prevent selecting DOB less than 18 years
+window.onload = function () {
+
+    let today = new Date();
+
+    today.setFullYear(today.getFullYear() - 18);
+
+    let maxDate = today.toISOString().split("T")[0];
+
+    document.getElementById("dob").setAttribute("max", maxDate);
+};
+</script>
+ -->
+
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gas Agency · Registration</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons (optional but adds polish) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        body {
+            background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        .register-card {
+            border: none;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 20px 50px -8px rgba(13, 110, 253, 0.10), 0 8px 24px rgba(0,0,0,0.04);
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem 2rem 2.5rem;
+            transition: transform 0.2s ease;
+        }
+        .register-card:hover {
+            transform: translateY(-4px);
+        }
+        .register-title {
+            color: #0b2a4a;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            border-bottom: 3px solid #0d6efd;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+        .register-title i {
+            color: #f97316;
+            margin-right: 8px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #1f3a4b;
+            font-size: 0.92rem;
+        }
+        .form-control, .form-select {
+            border-radius: 40px;
+            padding: 12px 18px;
+            border: 1px solid #dce2e9;
+            background: #f8fafc;
+            transition: 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.10);
+            background: white;
+        }
+        .btn-primary {
+            border-radius: 40px;
+            padding: 12px 36px;
+            font-weight: 600;
+            background: linear-gradient(145deg, #0d6efd, #0a58ca);
+            border: none;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .btn-primary:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(13, 110, 253, 0.25);
+        }
+        .form-check-label {
+            color: #2d4b64;
+        }
+        .message-box {
+            border-radius: 40px;
+            padding: 12px 20px;
+            background: #f0f7ff;
+            color: #0b2a4a;
+            border-left: 4px solid #0d6efd;
+        }
+        /* small tweaks */
+        .required-asterisk {
+            color: #dc3545;
+            margin-left: 2px;
+        }
+        @media (max-width: 576px) {
+            .register-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="register-card shadow p-4">
+
+        <h2 class="text-center fw-bold register-title">
+            <i class="bi bi-person-plus"></i> User Registration
+        </h2>
+
+        <form action="{% url 'register' %}" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+
+            <!-- ====== NAME ====== -->
+            <div class="mb-3 mt-4">
+                <label for="name" class="form-label">
+                    <i class="bi bi-person"></i> Name <span class="required-asterisk">*</span>
+                </label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required pattern="[a-z A-Z]{3,30}" />
+            </div>
+
+            <!-- ====== DOB ====== -->
+            <div class="mb-3">
+                <label for="dob" class="form-label">
+                    <i class="bi bi-calendar"></i> DOB <span class="required-asterisk">*</span>
+                </label>
+                <input type="date" class="form-control" id="dob" name="dob" required />
+            </div>
+
+            <!-- ====== GENDER ====== -->
+            <div class="mb-3">
+                <label for="genmale" class="form-label">
+                    <i class="bi bi-gender-ambiguous"></i> Gender <span class="required-asterisk">*</span>
+                </label>
+                <select class="form-select" id="genmale" name="gen">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <!-- ====== IMAGE ====== -->
+            <div class="mb-3">
+                <label for="pic" class="form-label">
+                    <i class="bi bi-image"></i> Image <span class="required-asterisk">*</span>
+                </label>
+                <input type="file" class="form-control" id="pic" name="image" required accept="image/*" />
+            </div>
+
+            <!-- ====== EMAIL ====== -->
+            <div class="mb-3">
+                <label for="email" class="form-label">
+                    <i class="bi bi-envelope"></i> Email <span class="required-asterisk">*</span>
+                </label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required />
+            </div>
+
+            <!-- ====== PASSWORD ====== -->
+            <div class="mb-3">
+                <label for="pwd" class="form-label">
+                    <i class="bi bi-lock"></i> Password <span class="required-asterisk">*</span>
+                </label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"
+                       minlength="8"
+                       pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+                       title="Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character." />
+                <small class="text-muted">Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special.</small>
+            </div>
+
+            <!-- ====== CONFIRM PASSWORD ====== -->
+            <div class="mb-3">
+                <label for="pwd2" class="form-label">
+                    <i class="bi bi-shield-lock"></i> Confirm Password <span class="required-asterisk">*</span>
+                </label>
+                <input type="password" class="form-control" id="pwd2" placeholder="Enter password again" name="pswd2" required />
+            </div>
+
+            <!-- ====== REMEMBER ME ====== -->
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" name="remember" id="rememberCheck" />
+                <label class="form-check-label" for="rememberCheck">
+                    <i class="bi bi-check-circle"></i> Remember me
+                </label>
+            </div>
+
+            <!-- ====== SUBMIT ====== -->
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-send"></i> Submit
+            </button>
+
+            <!-- ====== MESSAGES (exactly as provided) ====== -->
+            {% if messages %}
+                <div class="message-box mt-4">
+                    {% for message in messages %}
+                        <div class="text-center">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </form>
+
+        <!-- extra: login link -->
+        <div class="text-center mt-4">
+            <span class="text-secondary">Already have an account?</span>
+            <a href="{% url 'loginPage' %}" class="text-decoration-none fw-semibold">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap JS (for any toggles etc) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ====== SCRIPT (exactly as provided, with all validation) ====== -->
+<script>
+// Form Validation
+function validateForm() {
+
+    let name = document.getElementById("name").value.trim();
+    let dob = document.getElementById("dob").value;
+    let image = document.getElementById("pic").value;
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("pwd").value;
+    let confirmPassword = document.getElementById("pwd2").value;
+
+    // Name Validation
+    if (!/^[A-Za-z ]{3,30}$/.test(name)) {
+        alert("Name should contain only letters and spaces (3-30 characters).");
+        return false;
+    }
+
+    // DOB Validation
+    if (dob === "") {
+        alert("Please select your Date of Birth.");
+        return false;
+    }
+
+    let birthDate = new Date(dob);
+    let today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    let month = today.getMonth() - birthDate.getMonth();
+
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    if (age < 18) {
+        alert("You must be at least 18 years old to register.");
+        return false;
+    }
+
+    // Image Validation
+    if (image === "") {
+        alert("Please select an image.");
+        return false;
+    }
+
+    let ext = image.split('.').pop().toLowerCase();
+
+    if (!["jpg", "jpeg", "png", "gif"].includes(ext)) {
+        alert("Only JPG, JPEG, PNG and GIF images are allowed.");
+        return false;
+    }
+
+    // Email Validation
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid email address.");
+        return false;
+    }
+
+    // Password Validation
+    let passPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (!passPattern.test(password)) {
+        alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.");
+        return false;
+    }
+
+    // Confirm Password
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+    }
+
+    return true;
+}
+
+// Prevent selecting DOB less than 18 years
+window.onload = function () {
+
+    let today = new Date();
+
+    today.setFullYear(today.getFullYear() - 18);
+
+    let maxDate = today.toISOString().split("T")[0];
+
+    document.getElementById("dob").setAttribute("max", maxDate);
+};
+</script>
+
+</body>
+</html>
+```

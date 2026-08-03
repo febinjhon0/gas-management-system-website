@@ -1,0 +1,157 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="text-center fw-bold bg-body-secondary">Booking List</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Cylinder Type</th>
+      <th scope="col">Net Weight</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  {% for b in bookings %}
+   <tr>
+      <th scope="col">{{b.booking.user.Name}}</th>
+      <th scope="col">{{b.booking.cylinder.Type}}</th>
+      <th scope="col">{{b.booking.cylinder.Net}}</th>
+      <th scope="col">{{b.booking.price}}</th>
+      <th >{{b.Quantity}}</th>
+      <th scope="col">
+        <form  >
+          {% csrf_token %}
+         
+          {% if b.status == "pending" %}
+                    <a href="/agent_accept/{{b.id}}/">Accept</a>
+          {% elif b.status == 'accepted' %}
+          <a href="/agent_reject/{{b.id}}/">Reject</a>
+          {% else%}
+          <a href="/agent_accept/{{b.id}}/">Accept</a>
+      
+          {%endif%}
+
+        </form>
+      </th>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Bookings</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    {% include 'Agent/agentheader.html' %}
+
+<div class="container py-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Assigned Booking List</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Cylinder Type</th>
+                            <th>Net Weight</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for b in bookings %}
+                        <tr>
+                            <td>{{ b.booking.user.Name }}</td>
+                            <td>{{ b.booking.cylinder.Type }}</td>
+                            <td>{{ b.booking.cylinder.Net }}</td>
+                            <td>₹ {{ b.booking.price }}</td>
+                            <td>{{ 1 }}</td>
+
+                            <td>
+
+                                {% if b.status == "pending" %}
+                                    <a href="/agent_accept/{{ b.id }}/" class="btn btn-success btn-sm">
+                                        Accept
+                                    </a>
+
+                                {% elif b.status == "accepted" %}
+                                    <a href="/agent_reject/{{ b.id }}/" class="btn btn-danger btn-sm">
+                                        Reject
+                                    </a>
+
+                                {% else %}
+                                    <a href="/agent_accept/{{ b.id }}/" class="btn btn-success btn-sm">
+                                        Accept
+                                    </a>
+
+                                {% endif %}
+
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">
+                                No assigned bookings available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

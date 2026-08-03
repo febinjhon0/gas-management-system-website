@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+  <h1 class="text text-center fw-bold">Book Cylinder</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cylinder Type</th>
+      <th scope="col">Cylinder Price</th>
+      <th scope="col">Net Weight</th>
+      <th scope="col">Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in cylinder %}
+    <tr>
+      <td>{{c.Type}}</td>
+      <td>{{c.Price}}</td>
+      <td>{{c.Net}}</td>
+      <td>{{c.Available}}</td>
+      <td><a href="{% url 'bookingLink' c.id %}">Book</a></td>
+      </tr>
+      {% endfor %}
+  </tbody>
+
+   {% if messages %}
+        {% for message in messages %}
+            <div class="alert
+                {% if message.tags == 'success' %}alert-success
+                {% elif message.tags == 'error' %}alert-danger
+                {% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</table>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cylinder</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    {% include 'User/userheader.html' %}
+
+<div class="container py-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Book Cylinder</h3>
+        </div>
+
+        <div class="card-body">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert
+                        {% if message.tags == 'success' %}alert-success
+                        {% elif message.tags == 'error' %}alert-danger
+                        {% else %}alert-info
+                        {% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Cylinder Type</th>
+                            <th>Cylinder Price</th>
+                            <th>Net Weight</th>
+                            <th>Availability</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for c in cylinder %}
+                        <tr>
+                            <td>{{ c.Type }}</td>
+                            <td>₹ {{ c.Price }}</td>
+                            <td>{{ c.Net }}</td>
+                            <td>{{ c.Available }}</td>
+
+                            <td>
+                                <a href="{% url 'bookingLink' c.id %}" class="btn btn-success btn-sm">
+                                    Book
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">
+                                No cylinders available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

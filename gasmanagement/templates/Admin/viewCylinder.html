@@ -1,0 +1,409 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cylinder Type</th>
+      <th scope="col">Price</th>
+      <th scope="col">Net Weight</th>
+      <th scope="col">Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in cylinder %}
+    <tr>
+      <td>{{c.Type}}</td>
+      <td>{{c.Price}}</td>
+      <td>{{c.Net}}</td>
+      <td>{{c.Available}}</td>
+      <td><a href="{% url 'editcylinder' c.id %}">Edit</a></td>
+      <td><a href="{% url 'deletecylinder' c.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cylinders</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Cylinder List</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Cylinder Type</th>
+                            <th>Price</th>
+                            <th>Net Weight</th>
+                            <th>Availability</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for c in cylinder %}
+                        <tr>
+                            <td>{{ c.Type }}</td>
+                            <td>₹ {{ c.Price }}</td>
+                            <td>{{ c.Net }}</td>
+                            <td>{{ c.Available }}</td>
+
+                            <td>
+                                <a href="{% url 'editcylinder' c.id %}" class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'deletecylinder' c.id %}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to delete this cylinder?');">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">
+                                No cylinders available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cylinders · Gas Agency</title>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding: 2rem 0;
+        }
+
+        .cylinder-card {
+            border: none;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 20px 50px -8px rgba(13, 110, 253, 0.10), 0 8px 24px rgba(0,0,0,0.04);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .cylinder-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-header-custom {
+            background: linear-gradient(145deg, #0d6efd, #0a58ca);
+            padding: 1.2rem 1.5rem;
+            border-bottom: none;
+        }
+
+        .card-header-custom h3 {
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .card-header-custom h3 i {
+            font-size: 1.8rem;
+            color: #ffc107;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background: #1a2634;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 14px 12px;
+            border-bottom: none;
+        }
+
+        .table tbody td {
+            padding: 14px 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #edf2f7;
+            color: #1f2e3b;
+            font-size: 0.92rem;
+        }
+
+        .table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(13, 110, 253, 0.04);
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .btn-sm-custom {
+            border-radius: 40px;
+            padding: 5px 18px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: none;
+        }
+
+        .btn-warning-custom {
+            background: linear-gradient(145deg, #ffc107, #e0a800);
+            color: #1a2634;
+        }
+
+        .btn-warning-custom:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+            color: #1a2634;
+        }
+
+        .btn-danger-custom {
+            background: linear-gradient(145deg, #dc3545, #b02a37);
+            color: white;
+        }
+
+        .btn-danger-custom:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            color: white;
+        }
+
+        .empty-state {
+            padding: 2.5rem 0;
+            color: #6c7e8f;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #b0c4d9;
+        }
+
+        .badge-availability {
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .badge-instock {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .badge-outofstock {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .card-footer-custom {
+            background: transparent;
+            border-top: 1px solid #edf2f7;
+            padding: 1rem 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .table thead th,
+            .table tbody td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+            .btn-sm-custom {
+                padding: 4px 12px;
+                font-size: 0.7rem;
+            }
+            .card-header-custom h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5 pt-5">
+    {% include 'header.html' %}
+
+    <div class="cylinder-card card shadow-sm">
+
+        <!-- Card Header -->
+        <div class="card-header-custom text-white">
+            <h3>
+                <i class="bi bi-speedometer2"></i>
+                Cylinder List
+                <span class="badge bg-white text-primary ms-2" style="font-size:0.75rem; border-radius:40px; padding:4px 16px;">
+                    {{ cylinder|length }}
+                </span>
+            </h3>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th><i class="bi bi-tag"></i> Cylinder Type</th>
+                            <th><i class="bi bi-currency-rupee"></i> Price</th>
+                            <th><i class="bi bi-weight-scale"></i> Net Weight</th>
+                            <th><i class="bi bi-check-circle"></i> Availability</th>
+                            <th colspan="2"><i class="bi bi-gear"></i> Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for c in cylinder %}
+                        <tr>
+                            <td><strong>{{ c.Type }}</strong></td>
+                            <td><span class="fw-semibold">₹ {{ c.Price }}</span></td>
+                            <td>{{ c.Net }}</td>
+                            <td>
+                                {% if c.Available|lower == "in stock" or c.Available|lower == "instock" %}
+                                    <span class="badge-availability badge-instock">
+                                        <i class="bi bi-check-circle-fill"></i> In Stock
+                                    </span>
+                                {% elif c.Available|lower == "out of stock" or c.Available|lower == "outofstock" %}
+                                    <span class="badge-availability badge-outofstock">
+                                        <i class="bi bi-x-circle-fill"></i> Out of Stock
+                                    </span>
+                                {% else %}
+                                    <span class="badge-availability bg-secondary text-white">{{ c.Available }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a href="{% url 'editcylinder' c.id %}" class="btn btn-warning-custom btn-sm-custom">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'deletecylinder' c.id %}"
+                                   class="btn btn-danger-custom btn-sm-custom"
+                                   onclick="return confirm('Are you sure you want to delete this cylinder?');">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <span class="d-block fw-semibold">No cylinders available.</span>
+                                <span class="text-muted small">Add a new cylinder to get started.</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer-custom d-flex justify-content-between align-items-center">
+            <span class="text-muted small">
+                <i class="bi bi-info-circle"></i> Total cylinders: {{ cylinder|length }}
+            </span>
+            <a href="{% url 'manageCylinder' %}" class="text-decoration-none text-primary fw-semibold small">
+                <i class="bi bi-plus-circle"></i> Add New Cylinder
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="table-responsive">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Customer</th>
+      <th scope="col">Feedback</th>
+      <th scope="col">Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in data %}
+    <tr>
+      <td>{{d.Date}}</td>
+      <td>{{d.Name}}</td>
+      <td>{{d.Message}}</td>
+      <td>{{d.get_Rating_display}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+    </div>
+
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Customer Feedback</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Feedback</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for d in data %}
+                        <tr>
+                            <td>{{ d.Date }}</td>
+                            <td>{{ d.customer.Name }}</td>
+                            <td>{{ d.Message }}</td>
+                            <td>{{ d.get_Rating_display }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No feedback available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback List · Gas Agency</title>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding: 2rem 0;
+        }
+
+        .feedback-card {
+            border: none;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 20px 50px -8px rgba(13, 110, 253, 0.10), 0 8px 24px rgba(0,0,0,0.04);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px -12px rgba(13, 110, 253, 0.15);
+        }
+
+        .card-header-custom {
+            background: linear-gradient(145deg, #0d6efd, #0a58ca);
+            padding: 1.2rem 1.5rem;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header-custom::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+        }
+
+        .card-header-custom h3 {
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header-custom h3 i {
+            font-size: 1.8rem;
+            color: #ffc107;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background: #1a2634;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 14px 12px;
+            border-bottom: none;
+        }
+
+        .table tbody td {
+            padding: 14px 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #edf2f7;
+            color: #1f2e3b;
+            font-size: 0.92rem;
+        }
+
+        .table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(13, 110, 253, 0.04);
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .empty-state {
+            padding: 2.5rem 0;
+            color: #6c7e8f;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #b0c4d9;
+        }
+
+        /* Rating Stars */
+        .rating-stars {
+            color: #ffc107;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-stars i {
+            margin: 0 1px;
+        }
+
+        .rating-stars .empty-star {
+            color: #dce2e9;
+        }
+
+        /* Customer name badge */
+        .customer-badge {
+            background: #eef2f7;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #0b2a4a;
+            display: inline-block;
+        }
+
+        .feedback-message {
+            max-width: 250px;
+            margin: 0 auto;
+            font-style: italic;
+            color: #2c4a5e;
+        }
+
+        .card-footer-custom {
+            background: transparent;
+            border-top: 1px solid #edf2f7;
+            padding: 1rem 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .table thead th,
+            .table tbody td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+            .card-header-custom h3 {
+                font-size: 1.3rem;
+            }
+            .feedback-message {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+<div class="container mt-5 pt-5">
+    {% include 'header.html' %}
+
+    <div class="feedback-card card shadow-sm">
+
+        <!-- Card Header -->
+        <div class="card-header-custom text-white">
+            <h3>
+                <i class="bi bi-chat-left-text"></i>
+                Customer Feedback
+                <span class="badge bg-white text-primary ms-2" style="font-size:0.75rem; border-radius:40px; padding:4px 16px;">
+                    {{ data|length }}
+                </span>
+            </h3>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th><i class="bi bi-calendar"></i> Date</th>
+                            <th><i class="bi bi-person"></i> Customer</th>
+                            <th><i class="bi bi-chat"></i> Feedback</th>
+                            <th><i class="bi bi-star"></i> Rating</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for d in data %}
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{{ d.Date }}</span>
+                            </td>
+                            <td>
+                                <span class="customer-badge">
+                                    <i class="bi bi-person-circle me-1"></i> {{ d.customer.Name }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="feedback-message">
+                                    <i class="bi bi-quote text-muted me-1"></i>
+                                    {{ d.Message }}
+                                </span>
+                            </td>
+                            <td>
+                                {% with rating=d.get_Rating_display %}
+                                    <span class="rating-stars">
+                                        {% if rating == "⭐⭐⭐⭐⭐" or rating == "Excellent" %}
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        {% elif rating == "⭐⭐⭐⭐" or rating == "Good" %}
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                        {% elif rating == "⭐⭐⭐" or rating == "Average" %}
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                        {% elif rating == "⭐⭐" or rating == "Poor" %}
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                        {% elif rating == "⭐" or rating == "Very Poor" %}
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                            <i class="bi bi-star empty-star"></i>
+                                        {% else %}
+                                            {{ rating }}
+                                        {% endif %}
+                                    </span>
+                                {% endwith %}
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <span class="d-block fw-semibold">No feedback available.</span>
+                                <span class="text-muted small">Customer feedback will appear here.</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer-custom d-flex justify-content-between align-items-center">
+            <span class="text-muted small">
+                <i class="bi bi-info-circle"></i> Total feedback entries: {{ data|length }}
+            </span>
+            <span class="text-muted small">
+                <i class="bi bi-star-fill text-warning"></i> Average rating: 
+                {% if data|length > 0 %}
+                    {% with total=0 %}
+                        {% for d in data %}
+                            {% with rating_value=d.Rating|default:0 %}
+                                <!-- placeholder for average calculation -->
+                            {% endwith %}
+                        {% endfor %}
+                        <span class="fw-semibold">—</span>
+                    {% endwith %}
+                {% else %}
+                    <span class="fw-semibold">N/A</span>
+                {% endif %}
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

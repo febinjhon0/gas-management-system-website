@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="text-center fw-bold bg-body-secondary">Booking List</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Cylinder Type</th>
+      <th scope="col">Net Weight</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  {% for b in book %}
+   <tr>
+      <th scope="col">{{b.user.Name}}</th>
+      <th scope="col">{{b.cylinder.Type}}</th>
+      <th scope="col">{{b.bookingdate}}</th>
+      <th scope="col">{{b.price}}</th>
+      <th scope="col">{{b.cylinder.Net}}</th>
+      <th scope="col"><a href="{% url 'assignAgent' b.id %}">Assign Agent</a></th>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    {% include 'header.html' %}
+
+<div class="container mt-5 pt-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Booking List</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Cylinder Type</th>
+                            <th>Booking Date</th>
+                            <th>Price</th>
+                            <th>Net Weight</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for b in book %}
+                        <tr>
+                            <td>{{ b.user.Name }}</td>
+                            <td>{{ b.cylinder.Type }}</td>
+                            <td>{{ b.bookingdate }}</td>
+                            <td>₹ {{ b.price }}</td>
+                            <td>{{ b.cylinder.Net }}</td>
+                            <td>
+                                <a href="{% url 'assignAgent' b.id %}" class="btn btn-success btn-sm">
+                                    Assign Agent
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">
+                                No bookings available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

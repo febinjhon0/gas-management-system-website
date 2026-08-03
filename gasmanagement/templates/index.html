@@ -1,0 +1,640 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</head>
+<body style="background-color: lightcyan;">
+    <h1 class="text-center fw-bold" style="color: lightgray;">Welcome To Gas Agency</h1>
+    <p class="lead">Welcome to our authorized gas agency, your trusted partner for safe, reliable, and prompt LPG cylinder delivery. We proudly serve our local community with easy online bookings, transparent refill tracking, and dedicated customer support.</p>
+    <h3>Why Choose Us</h3>
+    <ul>
+        <li><span  style="color: gray; font-weight: 1000;">Safe and Timely Delivery:</span> Fast delivery right to your door.</li>
+         <li><span style="color: gray; font-weight: 1000;">Easy Online Booking:</span> Book refills or check status in seconds.</li>
+    </ul>
+    <h3><a href="{% url 'register' %}">Register </a>as a new user</h3>
+    <h3><a href="{% url 'loginPage' %}">Login </a>if Already have an Account</h3>
+
+
+
+</body>
+</html> -->
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Agency Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        body{
+            background:linear-gradient(135deg,#dff6ff,#f7fbff);
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+        }
+
+        .card{
+            border:none;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,.15);
+        }
+
+        .title{
+            color:#0d6efd;
+            font-size:3rem;
+            font-weight:bold;
+        }
+
+        .lead{
+            color:#555;
+        }
+
+        .feature i{
+            color:#0d6efd;
+            font-size:22px;
+            margin-right:10px;
+        }
+
+        .btn-custom{
+            padding:12px 35px;
+            border-radius:30px;
+            font-weight:bold;
+        }
+
+        .gas-icon{
+            font-size:150px;
+            color:#0d6efd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container hero">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6">
+
+            <h1 class="title">
+                <i class="bi bi-fire"></i>
+                Gas Agency Management System
+            </h1>
+
+            <p class="lead mt-4">
+                Welcome to our authorized Gas Agency. Book LPG cylinders
+                online, monitor booking status, receive timely deliveries,
+                and enjoy secure and hassle-free services from the comfort
+                of your home.
+            </p>
+
+            <div class="mt-4">
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Safe & Secure LPG Delivery
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Online Cylinder Booking
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Real-Time Booking Status
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Trusted Customer Support
+                </p>
+
+            </div>
+
+            <div class="mt-5">
+
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg btn-custom me-3">
+                    <i class="bi bi-person-plus-fill"></i>
+                    Register
+                </a>
+
+                <a href="{% url 'loginPage' %}" class="btn btn-outline-primary btn-lg btn-custom">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card p-5 text-center">
+
+                <i class="bi bi-fire gas-icon"></i>
+
+                <h3 class="mt-4 fw-bold">
+                    Reliable LPG Services
+                </h3>
+
+                <p class="text-muted">
+                    Experience quick booking, transparent delivery updates,
+                    secure account management, and dependable service
+                    designed for every household.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>  -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Agency Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        body{
+            background:linear-gradient(135deg,#dff6ff,#f7fbff);
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+        }
+
+        .card{
+            border:none;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,.15);
+        }
+
+        .title{
+            color:#0d6efd;
+            font-size:3rem;
+            font-weight:bold;
+        }
+
+        .lead{
+            color:#555;
+        }
+
+        .feature i{
+            color:#0d6efd;
+            font-size:22px;
+            margin-right:10px;
+        }
+
+        .btn-custom{
+            padding:12px 35px;
+            border-radius:30px;
+            font-weight:bold;
+        }
+
+        .gas-icon{
+            font-size:150px;
+            color:#0d6efd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container hero">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6">
+
+            <h1 class="title">
+                <i class="bi bi-fire"></i>
+                Gas Agency Management System
+            </h1>
+
+            <p class="lead mt-4">
+                Welcome to our authorized Gas Agency. Book LPG cylinders
+                online, monitor booking status, receive timely deliveries,
+                and enjoy secure and hassle-free services from the comfort
+                of your home.
+            </p>
+
+            <div class="mt-4">
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Safe & Secure LPG Delivery
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Online Cylinder Booking
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Real-Time Booking Status
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Trusted Customer Support
+                </p>
+
+            </div>
+
+            <div class="mt-5">
+
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg btn-custom me-3">
+                    <i class="bi bi-person-plus-fill"></i>
+                    Register
+                </a>
+
+                <a href="{% url 'loginPage' %}" class="btn btn-outline-primary btn-lg btn-custom">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card p-5 text-center">
+
+                <i class="bi bi-fire gas-icon"></i>
+
+                <h3 class="mt-4 fw-bold">
+                    Reliable LPG Services
+                </h3>
+
+                <p class="text-muted">
+                    Experience quick booking, transparent delivery updates,
+                    secure account management, and dependable service
+                    designed for every household.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Agency Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font (optional but adds elegance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        /* card with soft glassmorphism */
+        .card {
+            border: none;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 20px 50px -8px rgba(13, 110, 253, 0.12), 0 8px 24px rgba(0,0,0,0.04);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px -12px rgba(13, 110, 253, 0.18);
+        }
+
+        .title {
+            color: #0b2a4a;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .title i {
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.12);
+            padding: 6px 12px 6px 8px;
+            border-radius: 60px;
+            margin-right: 6px;
+            font-size: 2.8rem;
+        }
+
+        .lead {
+            color: #2c3e50;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            font-weight: 400;
+            max-width: 540px;
+        }
+
+        .feature {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1a2e3f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(13, 110, 253, 0.05);
+        }
+
+        .feature i {
+            color: #0d6efd;
+            font-size: 1.5rem;
+            background: rgba(13, 110, 253, 0.08);
+            padding: 6px;
+            border-radius: 40px;
+            width: 38px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .feature:hover i {
+            background: #0d6efd;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .btn-custom {
+            padding: 14px 40px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+        }
+
+        .btn-custom.btn-primary {
+            background: linear-gradient(145deg, #0d6efd, #0a58ca);
+            border: none;
+        }
+
+        .btn-custom.btn-primary:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 14px 28px rgba(13, 110, 253, 0.30);
+        }
+
+        .btn-custom.btn-outline-primary {
+            border: 2px solid #0d6efd;
+            background: transparent;
+            color: #0d6efd;
+        }
+
+        .btn-custom.btn-outline-primary:hover {
+            background: #0d6efd;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(13, 110, 253, 0.20);
+        }
+
+        .gas-icon {
+            font-size: 120px;
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.08);
+            padding: 20px;
+            border-radius: 60px;
+            display: inline-block;
+            line-height: 1;
+            transition: 0.3s;
+        }
+
+        .card:hover .gas-icon {
+            transform: scale(1.04) rotate(-2deg);
+            color: #0d6efd;
+            background: rgba(13, 110, 253, 0.06);
+        }
+
+        .card h3 {
+            color: #0b2a4a;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .card .text-muted {
+            color: #3d576b !important;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* floating glow accent */
+        .glow-badge {
+            display: inline-block;
+            background: rgba(13, 110, 253, 0.06);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0d6efd;
+            letter-spacing: 0.3px;
+            margin-bottom: 12px;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 992px) {
+            .title {
+                font-size: 2.6rem;
+            }
+            .gas-icon {
+                font-size: 90px;
+            }
+            .btn-custom {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            .lead {
+                font-size: 1rem;
+            }
+            .feature {
+                font-size: 0.95rem;
+            }
+            .gas-icon {
+                font-size: 70px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container hero">
+
+    <div class="row align-items-center g-5">
+
+        <!-- LEFT COLUMN -->
+        <div class="col-lg-6">
+
+            <!-- subtle badge -->
+            <div class="glow-badge">
+                <i class="bi bi-shield-check me-1"></i> Authorized Gas Agency
+            </div>
+
+            <h1 class="title">
+                <i class="bi bi-fire"></i>
+                Gas Agency Management System
+            </h1>
+
+            <p class="lead mt-4">
+                Welcome to our authorized Gas Agency. Book LPG cylinders
+                online, monitor booking status, receive timely deliveries,
+                and enjoy secure and hassle-free services from the comfort
+                of your home.
+            </p>
+
+            <div class="mt-4">
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Safe & Secure LPG Delivery
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Online Cylinder Booking
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Real-Time Booking Status
+                </p>
+
+                <p class="feature">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Trusted Customer Support
+                </p>
+
+            </div>
+
+            <div class="mt-5 d-flex flex-wrap gap-3">
+
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg btn-custom">
+                    <i class="bi bi-person-plus-fill me-1"></i>
+                    Register
+                </a>
+
+                <a href="{% url 'loginPage' %}" class="btn btn-outline-primary btn-lg btn-custom">
+                    <i class="bi bi-box-arrow-in-right me-1"></i>
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-lg-6">
+
+            <div class="card p-4 p-xl-5 text-center">
+
+                <div class="mb-3">
+                    <i class="bi bi-fire gas-icon"></i>
+                </div>
+
+                <h3 class="mt-2 fw-bold">
+                    Reliable LPG Services
+                </h3>
+
+                <p class="text-muted mx-auto" style="max-width: 360px;">
+                    Experience quick booking, transparent delivery updates,
+                    secure account management, and dependable service
+                    designed for every household.
+                </p>
+
+                <!-- tiny extra trust line (keeps the card balanced) -->
+                <div class="mt-3 d-flex justify-content-center gap-3 small text-secondary">
+                    <span><i class="bi bi-clock-history text-primary"></i> 24/7 support</span>
+                    <span><i class="bi bi-truck text-primary"></i> On-time delivery</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

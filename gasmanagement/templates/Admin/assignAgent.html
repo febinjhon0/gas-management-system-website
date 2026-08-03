@@ -1,0 +1,86 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Agent</title>
+</head>
+<body>
+
+<h2>Assign Delivery Agent</h2>
+
+<form action="{% url 'assignAgent' booking.id %}" method="POST">
+    {% csrf_token %}
+
+    <label>Select Agent:</label>
+
+    <select name="agent">
+        {% for a in agents %}
+            <option value="{{ a.id }}">
+                {{ a.Name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <input type="submit" value="Assign">
+
+</form>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Agent</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    {% include 'header.html' %}
+
+<div class="container mt-5 pt-5">
+
+    <div class="card mx-auto shadow-sm" style="max-width: 450px;">
+        <div class="card-header text-center bg-primary text-white">
+            <h4>Assign Delivery Agent</h4>
+        </div>
+
+        <div class="card-body">
+
+            <form action="{% url 'assignAgent' booking.id %}" method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Select Agent</label>
+
+                    <select name="agent" class="form-select" required>
+                        <option value="">-- Choose Agent --</option>
+
+                        {% for a in agents %}
+                        <option value="{{ a.id }}">
+                            {{ a.Name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Assign Agent
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
