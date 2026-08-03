@@ -72,5 +72,3 @@ A web-based **Gas Management System** developed using **Python Django** to simpl
 - XAMPP
 
 ---
-
-# Project Structure
