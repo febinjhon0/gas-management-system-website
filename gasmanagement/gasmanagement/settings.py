@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["gas-management-system.onrender.com"]
 
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
 
 # Application definition
 
